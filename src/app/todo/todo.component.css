@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Gaegu');
+
+.gaegu {
+  font-family: 'Gaegu', cursive;
+  font-size: 20px;
+
+}
+
+.completed {
+   text-decoration: line-through;
+}
+

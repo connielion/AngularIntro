@@ -1,0 +1,65 @@
+<div class="container" style="margin-top: 70px">
+
+  <div class="row">
+    <h1 class="text-center gaegu">Todo List</h1>
+
+  </div>
+
+  <div class="row"> <!--delete btn-->
+    <button class="btn btn-danger col-lg-offset-12" data-toggle="modal" data-target="#myModal">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+  </div>
+
+  <ul class="list-group"> <!--list of tasks-->
+
+     <ng-container *ngFor="let todo of todos">
+        <li class="list-group-item gaegu" [ngClass]="{'completed' : todo.status }" *ngIf = "!todo.trash" (click)="toggleTodo(todo)">
+      {{todo.task}}
+      <!--true: show/false=not show-->
+      <button class="btn btn-sm btn-warning" (click)="moveToTrash(todo)">Delete</button>
+      </li>
+<!--
+  [ngClass="{'Class Name': boolean(T/F)}".
+  if true, class gets applied/false: not applied.
+-->
+     </ng-container>
+  </ul>
+
+  <form action="POST" (ngSubmit)="addTodo()">
+
+     <div class="form-group">
+
+      <label for="task">Task</label>
+      <input type="text" class="form-control" id="task" name="task" placeholder="Task" [(ngModel)]="newTask.task">
+
+      <button class="btn btn-info" style="margin-top: 10px" >Add</button>
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"> &times; </span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Trash</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group"> <!--list of tasks-->
+
+            <ng-container *ngFor="let todo of todos">
+                <li class="list-group-item gaegu"  (click)="toggleTodo(todo)" [ngClass]="{'completed' : todo.status }" *ngIf="todo.trash">
+                    {{todo.task}}
+                    </li>
+            </ng-container>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+</div>
