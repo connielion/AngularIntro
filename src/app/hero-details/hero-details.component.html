@@ -48,11 +48,12 @@
               <input type="text" id="bio" name="bio" value="hero.bio" class="form-control" [(ngModel)]="hero.bio">
             </div>
             <div class="radio">
-              <label><input type="radio" name="hero" [value]="true">Hero</label>
+              <label><input type="radio" name="hero" [value]="true" [(ngModel)]="hero.hero">Hero</label>
             </div>
             <div class="radio">
               <label><input type="radio" name="hero" [value]="false" [(ngModel)]="hero.hero">Villain</label>
             </div>
+            <button class="btn btn-success" data-dismiss="modal">Update</button>
           </form>
       </div>
     </div>
