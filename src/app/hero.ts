@@ -4,4 +4,6 @@ export class Hero {
   hero: boolean;
   alter: string;
   bio: string;
+  img: string;
+  powers: [string];
 }

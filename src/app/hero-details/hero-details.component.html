@@ -14,17 +14,36 @@
   <!--row start-->
   <div class="row">
     <div class="col-md-4">
-
+      <img src="{{hero.img}}" alt="{{hero.name}}"  class="img-responsive">
     </div>
     <!--bio section-->
     <div class="col-md-8">
       <h3 class="text-center">Alter: {{hero.alter}}</h3>
       <p class="text-center">Bio: {{hero.bio}}</p>
-    </div>
+      <!--POWERS-->
+        <h2 class="text-center">Powers</h2>
+          <ul class="list-group"><!--list-->
+            <ng-container *ngFor="let power of hero.powers">
+              <li class="list-group-item">{{power}}</li>
+            </ng-container>
+          </ul>
+          <!--ADD POWER-->
+          <form action="POST" (ngSubmit)="addPower()">
+            <div class="form-group">
+              <label for="power">New Power</label>
+              <!--POWER INPUT-->
+              <input type="text" id="power" name="power" class="form-control" placeholder="power" [(ngModel)]="newPower" required>
+            </div>
+
+            <button class="btn btn-success">Add</button>
+
+          </form>
+    </div><!--END COL-8-->
   </div>
 </div>
 
-```<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--MODAL CONTENT-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -47,12 +66,18 @@
               <label for="bio">Bio</label>
               <input type="text" id="bio" name="bio" value="hero.bio" class="form-control" [(ngModel)]="hero.bio">
             </div>
-            <div class="radio">
+            <div class="radio"><!--RADIOS-->
               <label><input type="radio" name="hero" [value]="true" [(ngModel)]="hero.hero">Hero</label>
             </div>
             <div class="radio">
               <label><input type="radio" name="hero" [value]="false" [(ngModel)]="hero.hero">Villain</label>
             </div>
+            <!--EDIT POWER-->
+            <ng-container *ngFor="let power of hero.powers; trackBy: trackByIndex let i = index;">
+                <div class="form-group">
+                  <input type="text" id="editPower" name="power" value="{{power}}" class="form-control">
+                </div>
+              </ng-container>
             <button class="btn btn-success" data-dismiss="modal">Update</button>
           </form>
       </div>

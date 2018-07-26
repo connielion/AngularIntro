@@ -8,9 +8,21 @@ import { Hero } from '../hero';
   styleUrls: ['./hero-details.component.css']
 })
 export class HeroDetailsComponent implements OnInit {
-
+// data type
   hero: Hero;
   private temp: any;
+  newPower: string;
+
+// Add power function
+
+  addPower() {
+    this.hero.powers.push(this.newPower);
+    this.newPower = '';
+  }
+// track index function; EDITPOWER
+  trackByIndex(index: number, obj: any) {
+    return index;
+  }
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
