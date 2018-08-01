@@ -1,4 +1,4 @@
-import { Contact} from './contact';
+import { Contact } from './contact';
 
 export const CONTACTS: Contact[] = [
   { id: 1, name: 'John Doe', email: 'john@doe.com', phone: '1234567' },
