@@ -1,10 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Amiibo } from '../interface/amiibo';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AmiiboService {
 
-  constructor() { }
+  private apiUrl = 'http://www.amiiboapi.com/api/';
+
+  constructor(private http: HttpClient) { }
+ /*
+  myFunction() {
+    console.log('AAAH');
+  }
+  */
+
+  // Amiibo interface, type Array
+ getAmiibos(): Observable<Amiibo[]> {
+  return this.http.get<Amiibo[]>(`${this.apiUrl}amiibo`);
+ }
+
 }
