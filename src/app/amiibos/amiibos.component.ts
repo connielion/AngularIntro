@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AmiiboService } from '../services/amiibo.service';
 import { PaginationService } from '../services/pagination.service';
 import { Amiibo } from '../interface/amiibo';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-amiibos',
@@ -13,13 +14,11 @@ export class AmiibosComponent implements OnInit {
   pager: any = {};
   pagedItems: any = [];
 
-  constructor(private amiiboService: AmiiboService, private paginationService: PaginationService) { }
+  constructor(private amiiboService: AmiiboService, private paginationService: PaginationService, private route: ActivatedRoute) { }
   getAmiibos() {
-    this.amiiboService.getAmiibos().subscribe((amiibos: any) => {
-      this.amiibos = amiibos.amiibo;
-      this.setPage(1);
-    });
+
   }
+
   setPage(page: number) {
     if (page < 1 || this.pager.totalPages) {
       return;

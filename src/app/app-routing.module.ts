@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'todo', component: TodoComponent },
   { path: 'amiibos', component: AmiibosComponent},
   { path: 'amiibos', component: AmiibosComponent },
-  { path: 'amiibo/:id', component: AmiiboComponent }
+  { path: 'amiibo/:id', component: AmiiboComponent },
+  { path: 'amiibos/:category/:value', component: AmiibosComponent}
 ];
 
 @NgModule({
