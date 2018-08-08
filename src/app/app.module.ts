@@ -10,6 +10,7 @@ import { ContactComponent } from './contact/contact.component';
 import { TodoComponent } from './todo/todo.component';
 import { AmiibosComponent } from './amiibos/amiibos.component';
 import { AmiiboService } from './services/amiibo.service';
+import { AmiiboComponent } from './amiibo/amiibo.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AmiiboService } from './services/amiibo.service';
     HomeComponent,
     ContactComponent,
     TodoComponent,
-    AmiibosComponent
+    AmiibosComponent,
+    AmiiboComponent
   ],
   imports: [
     BrowserModule,

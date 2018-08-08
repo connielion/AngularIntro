@@ -22,5 +22,9 @@ export class AmiiboService {
  getAmiibos(): Observable<Amiibo[]> {
   return this.http.get<Amiibo[]>(`${this.apiUrl}amiibo`);
  }
+ getAmiibo(tail: string): Observable<Amiibo> {
+  console.log(tail);
+ return this.http.get<Amiibo>(`${this.apiUrl}amiibo/?tail=${tail}`);
+}
 
 }

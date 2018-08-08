@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AmiiboService } from '../services/amiibo.service';
+import { PaginationService } from '../services/pagination.service';
 import { Amiibo } from '../interface/amiibo';
 
 @Component({
@@ -8,24 +9,34 @@ import { Amiibo } from '../interface/amiibo';
   styleUrls: ['./amiibos.component.css']
 })
 export class AmiibosComponent implements OnInit {
-
   public amiibos: Amiibo[];
+  pager: any = {};
+  pagedItems: any = [];
 
-  constructor(private amiiboService: AmiiboService) { }
-
-    /* call function from service.ts
-    myFunction() {
-        // sthis.amiiboService.myFunction();
+  constructor(private amiiboService: AmiiboService, private paginationService: PaginationService) { }
+  getAmiibos() {
+    this.amiiboService.getAmiibos().subscribe((amiibos: any) => {
+      this.amiibos = amiibos.amiibo;
+      this.setPage(1);
+    });
+  }
+  setPage(page: number) {
+    if (page < 1 || this.pager.totalPages) {
+      return;
     }
-    */
-
-    getAmiibos() {
-      this.amiiboService.getAmiibos().subscribe( (amiibos: any) => this.amiibos = amiibos.amiibo);
-    }
-
-
+    this.pager = this.paginationService.getPager(this.amiibos.length, page);
+    this.pagedItems = this.amiibos.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+  // myFunction() {
+  //   this.amiiboService.myFunction();
+  //   this.amiiboService.anotherFunc();
+  // }
+  // anotherFunc() {
+  //   this.amiiboService.anotherFunc();
+  // }
   ngOnInit() {
-    // this.myFunction(); Console logs 'AAAH' from service
+    // this.myFunction();
+    // this.anotherFunc();
     this.getAmiibos();
   }
 
