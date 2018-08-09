@@ -15,9 +15,23 @@ export class AmiibosComponent implements OnInit {
   pagedItems: any = [];
 
   constructor(private amiiboService: AmiiboService, private paginationService: PaginationService, private route: ActivatedRoute) { }
-  getAmiibos() {
 
+  getAmiibos() {
+    this.route.params.subscribe(params => {
+      if (params.category) {
+        this.amiiboService.getFiltered(params.category, params.value).subscribe((amiibos: any) => {
+          this.amiibos = amiibos.amiibo;
+          this.setPage(1);
+        });
+      } else {
+        this.amiiboService.getAmiibos().subscribe((amiibos: any) => {
+          this.amiibos = amiibos.amiibo;
+          this.setPage(1);
+        });
+      }
+    });
   }
+
 
   setPage(page: number) {
     if (page < 1 || this.pager.totalPages) {
