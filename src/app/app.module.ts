@@ -11,6 +11,7 @@ import { TodoComponent } from './todo/todo.component';
 import { AmiibosComponent } from './amiibos/amiibos.component';
 import { AmiiboService } from './services/amiibo.service';
 import { AmiiboComponent } from './amiibo/amiibo.component';
+import { SearchPipe } from './pipe/search.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AmiiboComponent } from './amiibo/amiibo.component';
     ContactComponent,
     TodoComponent,
     AmiibosComponent,
-    AmiiboComponent
+    AmiiboComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

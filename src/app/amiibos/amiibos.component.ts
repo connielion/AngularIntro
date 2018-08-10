@@ -13,6 +13,8 @@ export class AmiibosComponent implements OnInit {
   public amiibos: Amiibo[];
   pager: any = {};
   pagedItems: any = [];
+  searchText: any;
+  paginator = true;
 
   constructor(private amiiboService: AmiiboService, private paginationService: PaginationService, private route: ActivatedRoute) { }
 
@@ -39,6 +41,16 @@ export class AmiibosComponent implements OnInit {
     }
     this.pager = this.paginationService.getPager(this.amiibos.length, page);
     this.pagedItems = this.amiibos.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  setAmiibos() {
+    if (!this.searchText) {
+      this.paginator = true;
+      return this.pagedItems;
+    } else {
+      this.paginator = false;
+      return this.amiibos;
+    }
   }
   // myFunction() {
   //   this.amiiboService.myFunction();
